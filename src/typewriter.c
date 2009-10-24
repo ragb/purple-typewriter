@@ -48,15 +48,9 @@
 #include <version.h>
 
 
-static gboolean writing_im_msg_cb(PurpleAccount * account,
-				  const char *who,
-				  char **message,
-				  PurpleConversation * conv,
-				  PurpleMessageFlags flags)
-{
-    purple_sound_play_file("/usr/share/sounds/question.wav", account);
-    purple_debug_info("typewriter", "sound played");
-    return FALSE;
+static void boddy_typing_cb(PurpleAccount *account, const char *name) {
+    purple_debug_info("gtk-typewriter", "Boddy %s is typing, making sound", name);
+    purple_sound_play_file("/usr/share/sounds/question.wav", NULL);
 }
 
 
@@ -65,8 +59,8 @@ static gboolean plugin_load(PurplePlugin * plugin)
     purple_debug_info("typewriter", "Loading plugin");
 
     purple_signal_connect(purple_conversations_get_handle(),
-			  "writing-im-msg", plugin,
-			  PURPLE_CALLBACK(writing_im_msg_cb), NULL);
+			  "boddy-typing", plugin,
+			  PURPLE_CALLBACK(boddy_typing_cb), NULL);
     return TRUE;
 }
 
