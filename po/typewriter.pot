@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-27 12:22+0000\n"
+"POT-Creation-Date: 2009-10-27 16:20+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,14 +16,14 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/typewriter.c:122
+#: ../src/typewriter.c:121
 msgid "Typewriter"
 msgstr ""
 
-#: ../src/typewriter.c:123
+#: ../src/typewriter.c:122
 msgid "Typewriter plugin"
 msgstr ""
 
-#: ../src/typewriter.c:125
-msgid "Typewriter plugin, plays sounds when boddies are typing"
+#: ../src/typewriter.c:124
+msgid "Typewriter plugin, plays sounds when buddies are typing"
 msgstr ""

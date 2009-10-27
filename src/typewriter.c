@@ -57,12 +57,11 @@
 
 static PurplePlugin *plugin_handle = NULL;
 
-static void boddy_typing_cb(PurpleAccount * account, const char *name,
+static void buddy_typing_cb(PurpleAccount * account, const char *name,
 			    void *data)
 {
-    purple_debug_misc(PLUGIN_ID, "Boddy %s is typing, making sound", name);
+    purple_debug_misc(PLUGIN_ID, "Buddy %s is typing, making sound", name);
     purple_sound_play_file("/usr/share/sounds/question.wav", account);
-    g_print("Called callback");
 }
 
 
@@ -71,8 +70,8 @@ static gboolean plugin_load(PurplePlugin * plugin)
     purple_debug_info(PLUGIN_ID, "Loading plugin");
 
     purple_signal_connect(purple_conversations_get_handle(),
-			  "boddy-typing", plugin,
-			  PURPLE_CALLBACK(boddy_typing_cb), NULL);
+			  "buddy-typing", plugin,
+			  PURPLE_CALLBACK(buddy_typing_cb), NULL);
 
     /* store reference for the plugin handle */
     plugin_handle = plugin;
@@ -122,7 +121,7 @@ static void init_plugin(PurplePlugin * plugin)
     info.name = _("Typewriter");
     info.summary = _("Typewriter plugin");
     info.description =
-	_("Typewriter plugin, plays sounds when boddies are typing");
+	_("Typewriter plugin, plays sounds when buddies are typing");
 }
 
 PURPLE_INIT_PLUGIN(typewriter, init_plugin, info)
