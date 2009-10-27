@@ -22,6 +22,9 @@
 # include <config.h>
 #endif
 
+#include <glib/gi18n-lib.h>
+
+
 /* config.h may define PURPLE_PLUGINS; protect the definition here so that we
  * don't get complaints about redefinition when it's not necessary. */
 #ifndef PURPLE_PLUGINS
@@ -54,9 +57,12 @@
 
 static PurplePlugin *plugin_handle = NULL;
 
-static void boddy_typing_cb(PurpleAccount *account, const char *name) {
+static void boddy_typing_cb(PurpleAccount * account, const char *name,
+			    void *data)
+{
     purple_debug_misc(PLUGIN_ID, "Boddy %s is typing, making sound", name);
     purple_sound_play_file("/usr/share/sounds/question.wav", account);
+    g_print("Called callback");
 }
 
 
@@ -67,11 +73,11 @@ static gboolean plugin_load(PurplePlugin * plugin)
     purple_signal_connect(purple_conversations_get_handle(),
 			  "boddy-typing", plugin,
 			  PURPLE_CALLBACK(boddy_typing_cb), NULL);
-			  
-			  /* store reference for the plugin handle */
-			  plugin_handle = plugin;
-			  return TRUE;
-			  }
+
+    /* store reference for the plugin handle */
+    plugin_handle = plugin;
+    return TRUE;
+}
 
 /* For specific notes on the meanings of each of these members, consult the C Plugin Howto
  * on the website. */
@@ -86,11 +92,11 @@ static PurplePluginInfo info = {
     PURPLE_PRIORITY_DEFAULT,
 
     PLUGIN_ID,
-    "Typewriter",
+    NULL,
     PACKAGE_VERSION,
 
-    "Typewriter plugin",
-    "Typewriter plugin, plays sounds when bodies are typing",
+    NULL,
+    NULL,
     "ruiandrebatista@gmail.com",	/* correct author */
     "http://outputstream.wordpress.com",
 
@@ -112,6 +118,11 @@ static PurplePluginInfo info = {
 
 static void init_plugin(PurplePlugin * plugin)
 {
+
+    info.name = _("Typewriter");
+    info.summary = _("Typewriter plugin");
+    info.description =
+	_("Typewriter plugin, plays sounds when boddies are typing");
 }
 
 PURPLE_INIT_PLUGIN(typewriter, init_plugin, info)
