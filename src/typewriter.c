@@ -53,6 +53,7 @@
 #include <conversation.h>
 #include <debug.h>
 #include         <plugin.h>
+#include <pluginpref.h>
 #include <prefs.h>
 #include <sound.h>
 #include <version.h>
@@ -166,11 +167,67 @@ plugin_load (PurplePlugin * plugin)
   return TRUE;
 }
 
+
+static PurplePluginPrefFrame *get_plugin_pref_frame() {
+    PurplePluginPrefFrame *frame;
+    PurplePluginPref *pref;
+    
+    frame = purple_plugin_pref_frame_new();
+    
+    /* God won't allow me to put too many prefs here */
+    pref = purple_plugin_pref_new_with_name_and_label(SOUND_FILE_PREF_NAME,
+    _("Sound file to play while buddies are typing\n"));
+    purple_plugin_pref_set_type(pref, PURPLE_PLUGIN_PREF_STRING_FORMAT);
+    purple_plugin_pref_set_format_type(pref, PURPLE_STRING_FORMAT_TYPE_NONE);
+    purple_plugin_pref_frame_add(frame, pref);
+    
+    pref = purple_plugin_pref_new_with_name_and_label(INTERVAL_SECONDS_PREF_NAME,
+    _("Interval to loop the sound while buddies are typing"));
+        purple_plugin_pref_set_bounds(pref, 0, 11);
+    purple_plugin_pref_frame_add(frame, pref);
+    
+    return frame;
+}
+
+/* Preferences information */
+static PurplePluginUiInfo prefs_info = {
+	get_plugin_pref_frame,
+	0,
+	NULL,
+
+	/* padding */
+	NULL,
+	NULL,
+	NULL,
+	NULL
+};
+
+
 /* For specific notes on the meanings of each of these members, consult the C Plugin Howto
  * on the website. */
 static PurplePluginInfo info = {
-  PURPLE_PLUGIN_MAGIC, PURPLE_MAJOR_VERSION, PURPLE_MINOR_VERSION, PURPLE_PLUGIN_STANDARD, NULL, 0, NULL, PURPLE_PRIORITY_DEFAULT, PLUGIN_ID, NULL, PACKAGE_VERSION, NULL, NULL, "ruiandrebatista@gmail.com",	/* correct author */
-  "http://outputstream.wordpress.com", plugin_load, NULL, NULL, NULL, NULL, NULL, NULL,	/* this tells libpurple the address of the function to call
+  PURPLE_PLUGIN_MAGIC,
+  PURPLE_MAJOR_VERSION,
+  PURPLE_MINOR_VERSION,
+  PURPLE_PLUGIN_STANDARD,
+  NULL,
+  0,
+  NULL,
+  PURPLE_PRIORITY_DEFAULT,
+  PLUGIN_ID,
+  NULL,
+  PACKAGE_VERSION,
+  NULL,
+  NULL,
+  "ruiandrebatista@gmail.com",	/* correct author */
+  "http://outputstream.wordpress.com",
+  plugin_load,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  &prefs_info,
+  NULL,	/* this tells libpurple the address of the function to call
 											   to get the list of plugin actions. */
   NULL,
   NULL,
