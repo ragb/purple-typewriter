@@ -1,5 +1,6 @@
 /*
  * typewriter plugin
+ * (c) 2009 - Rui Batista <ruiandrebatista@gmail.com>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -43,7 +44,7 @@
 # endif
 #endif
 
-#define PLUGIN_ID "gtk-ragb-typewriter"
+#define PLUGIN_ID "core-ragb-typewriter"
 #define PLUGIN_NAME "typewriter"
 
 
@@ -52,17 +53,16 @@
 #include <conversation.h>
 #include <debug.h>
 #include         <plugin.h>
+#include <prefs.h>
 #include <sound.h>
-
 #include <version.h>
 
 
 
-#define TIMEOUT_ID_KEY PLUGIN_ID \
-"timeout-id"
+#define TIMEOUT_ID_KEY PLUGIN_ID "timeout-id"
 
-#define TIMEOUT_INTERVAL 1000
-
+#define SOUND_FILE_PREF_NAME "/" PLUGIN_ID "/sound_file"
+#define INTERVAL_SECONDS_PREF_NAME "/" PLUGIN_ID "/interval_seconds"
 
 static PurplePlugin *plugin_handle = NULL;
 
@@ -75,7 +75,8 @@ play_typewriter_sound (void *data)
   conv = (PurpleConversation *) data;
   account = purple_conversation_get_account (conv);
 
-  purple_sound_play_file ("/usr/share/sounds/question.wav", account);
+  purple_sound_play_file (purple_prefs_get_path (SOUND_FILE_PREF_NAME),
+			  account);
   return TRUE;
 }
 
@@ -105,7 +106,10 @@ buddy_typing_cb (PurpleAccount * account, const char *name, void *unused)
     {
       /* create timeout */
       timeout_id =
-	g_timeout_add (TIMEOUT_INTERVAL, play_typewriter_sound, conv);
+	g_timeout_add_seconds (purple_prefs_get_int
+			       (INTERVAL_SECONDS_PREF_NAME),
+			       play_typewriter_sound, conv);
+
       purple_conversation_set_data (conv, TIMEOUT_ID_KEY,
 				    (void *) timeout_id);
     }
@@ -152,11 +156,11 @@ plugin_load (PurplePlugin * plugin)
   purple_signal_connect (purple_conversations_get_handle
 			 (), "buddy-typing", plugin,
 			 PURPLE_CALLBACK (buddy_typing_cb), NULL);
-			 
-			 purple_signal_connect(purple_conversations_get_handle(),
+
+  purple_signal_connect (purple_conversations_get_handle (),
 			 "buddy-typing-stopped", plugin,
-			 PURPLE_CALLBACK(buddy_typing_stopped_cb), NULL);
-			 
+			 PURPLE_CALLBACK (buddy_typing_stopped_cb), NULL);
+
   /* store reference for the plugin handle */
   plugin_handle = plugin;
   return TRUE;
@@ -182,6 +186,16 @@ init_plugin (PurplePlugin * plugin)
   info.summary = _("Typewriter plugin");
   info.description =
     _("Typewriter plugin, plays sounds when buddies are typing");
+
+  /* Create preferences */
+  purple_prefs_add_none ("/" PLUGIN_ID);
+
+  /* Sound interval */
+  purple_prefs_add_int (INTERVAL_SECONDS_PREF_NAME, 2);
+
+  /* Sound file path */
+  purple_prefs_add_path (SOUND_FILE_PREF_NAME,
+			 PURPLE_SOUNDSDIR "/typewriter.wav");
 }
 
 PURPLE_INIT_PLUGIN (typewriter, init_plugin, info)

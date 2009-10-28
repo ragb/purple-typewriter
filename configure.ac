@@ -1,4 +1,4 @@
-AC_INIT(typewriter, 0.1.0)
+AC_INIT(typewriter, 0.1.0, http://outputstream.wordpress.com)
 AC_CONFIG_SRCDIR(src/typewriter.c)
 AM_INIT_AUTOMAKE()
 AM_MAINTAINER_MODE
@@ -34,9 +34,12 @@ AM_GLIB_GNU_GETTEXT
 #
 
 PKG_CHECK_MODULES(LIBTYPEWRITER, 
-		  pidgin >= 2.0.0)
+		  purple >= 2.0.0)
 AC_SUBST(LIBTYPEWRITER_CFLAGS)
 AC_SUBST(LIBTYPEWRITER_LIBS)
+
+
+
 
 AC_OUTPUT([
 Makefile
@@ -50,3 +53,4 @@ ${PACKAGE}-${VERSION}
 
     Install Prefix:    ${prefix}
 "
+
