@@ -1,28 +1,36 @@
-# Typewriter pidgin plugin
-# Copyright (C) 2009 Rui Batista 
+# Typewriter portuguese translation
+# Copyright (C) 2009 Rui Batista
 # This file is distributed under the same license as the typewriter package.
-# Rui Batista <ruiandrebatista@gmail.com>, 2009.
+# Rui Batista <ruiandrebatista@gmail.com>, 2009
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-27 16:20+0000\n"
+"POT-Creation-Date: 2009-10-28 20:45+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: pt <PT@li.org>\n"
+"Last-Translator: Rui Batista <ruiandrebatista@gmail.com>\n"
+"Language-Team: portuguese <PT@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/typewriter.c:121
+#: ../src/typewriter.c:185
+msgid "Interval to loop the sound while buddies are typing"
+msgstr "Intervalo para repetir o som enquanto os contactos estiverem a escrever"
+
+#: ../src/typewriter.c:191
+msgid "Sound file to play while buddies are typing"
+msgstr "Ficheiro de som para tocar enquanto os contactos estiverem a escrever"
+
+#: ../src/typewriter.c:247
 msgid "Typewriter"
-msgstr "typewriter"
+msgstr "Máquina de Escrever"
 
-#: ../src/typewriter.c:122
+#: ../src/typewriter.c:248
 msgid "Typewriter plugin"
-msgstr "typewriter plugin"
+msgstr "Plugin Máquina de Escrever"
 
-#: ../src/typewriter.c:124
+#: ../src/typewriter.c:250
 msgid "Typewriter plugin, plays sounds when buddies are typing"
-msgstr "Plugin typewriter, toca som quando um contacto está a escrever"
+msgstr "Máquina de escrever, toca um som enquanto os contactos estão a escrever"
