@@ -1,0 +1,18 @@
+= TYPEWRITER =
+
+Typewriter is a purple/pidgin plugin that plays a typewriter sound when buddies are typing. In fact it can play any sound, however the typewriter sound stolen from the JAWS scripts for MSN/WLM gave it the name.
+
+== INSTALATION ==
+
+To install the plugin on the pidgin system directories, do the usual autotools procedure is needed.
+
+
+./configure --prefix=/usr && make && sudo make install
+
+Note that this commands installs pidgin in the standard /usr prefix, if you have compiled pidgin/purple from source it can be in other prefix like /usr/local, just change the --prefix switch.
+
+== ACTIVATION ==
+
+Just go to the plugins dialog (Preferences > Plugins) and check the typewriter plugin.
+
+
