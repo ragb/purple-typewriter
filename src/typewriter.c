@@ -53,75 +53,135 @@
 #include <debug.h>
 #include         <plugin.h>
 #include <sound.h>
+
 #include <version.h>
+
+
+
+#define TIMEOUT_ID_KEY PLUGIN_ID \
+"timeout-id"
+
+#define TIMEOUT_INTERVAL 1000
+
 
 static PurplePlugin *plugin_handle = NULL;
 
-static void buddy_typing_cb(PurpleAccount * account, const char *name,
-			    void *data)
+static gboolean
+play_typewriter_sound (void *data)
 {
-    purple_debug_misc(PLUGIN_ID, "Buddy %s is typing, making sound", name);
-    purple_sound_play_file("/usr/share/sounds/question.wav", account);
+  PurpleAccount *account;
+  PurpleConversation *conv;
+
+  conv = (PurpleConversation *) data;
+  account = purple_conversation_get_account (conv);
+
+  purple_sound_play_file ("/usr/share/sounds/question.wav", account);
+  return TRUE;
 }
 
 
-static gboolean plugin_load(PurplePlugin * plugin)
+static void
+buddy_typing_cb (PurpleAccount * account, const char *name, void *unused)
 {
-    purple_debug_info(PLUGIN_ID, "Loading plugin");
+  PurpleConversation *conv;
+  gint timeout_id;
+  void *data;
 
-    purple_signal_connect(purple_conversations_get_handle(),
-			  "buddy-typing", plugin,
-			  PURPLE_CALLBACK(buddy_typing_cb), NULL);
+  /* find conversation */
+  conv =
+    purple_find_conversation_with_account (PURPLE_CONV_TYPE_IM, name,
+					   account);
 
-    /* store reference for the plugin handle */
-    plugin_handle = plugin;
-    return TRUE;
+  if (!conv)
+    {
+      purple_debug_warning (PLUGIN_ID,
+			    "Can't find conversation with name %s", name);
+      return;
+    }
+
+  /* see if we have a timeout running, if no create one */
+  data = purple_conversation_get_data (conv, TIMEOUT_ID_KEY);
+  if (!data)
+    {
+      /* create timeout */
+      timeout_id =
+	g_timeout_add (TIMEOUT_INTERVAL, play_typewriter_sound, conv);
+      purple_conversation_set_data (conv, TIMEOUT_ID_KEY,
+				    (void *) timeout_id);
+    }
+
+}
+
+
+static void
+buddy_typing_stopped_cb (PurpleAccount *
+			 account, const char *name, void *unused)
+{
+  PurpleConversation *conv;
+  void *data;
+  gint timeout_id;
+  conv =
+    purple_find_conversation_with_account
+    (PURPLE_CONV_TYPE_IM, name, account);
+
+  if (!conv)
+    {
+      purple_debug_warning (PLUGIN_ID,
+			    "Can't find conversation %s, on buddy stopped typing",
+			    name);
+      return;
+    }
+
+  data = purple_conversation_get_data (conv, TIMEOUT_ID_KEY);
+  if (!data)
+    {
+      purple_debug_warning (PLUGIN_ID,
+			    "Can't find timeout id in conversation data");
+      return;
+    }
+
+  timeout_id = (gint) data;
+  g_source_remove (timeout_id);
+  purple_conversation_set_data (conv, TIMEOUT_ID_KEY, NULL);
+}
+
+static gboolean
+plugin_load (PurplePlugin * plugin)
+{
+  purple_debug_info (PLUGIN_ID, "Loading plugin");
+  purple_signal_connect (purple_conversations_get_handle
+			 (), "buddy-typing", plugin,
+			 PURPLE_CALLBACK (buddy_typing_cb), NULL);
+			 
+			 purple_signal_connect(purple_conversations_get_handle(),
+			 "buddy-typing-stopped", plugin,
+			 PURPLE_CALLBACK(buddy_typing_stopped_cb), NULL);
+			 
+  /* store reference for the plugin handle */
+  plugin_handle = plugin;
+  return TRUE;
 }
 
 /* For specific notes on the meanings of each of these members, consult the C Plugin Howto
  * on the website. */
 static PurplePluginInfo info = {
-    PURPLE_PLUGIN_MAGIC,
-    PURPLE_MAJOR_VERSION,
-    PURPLE_MINOR_VERSION,
-    PURPLE_PLUGIN_STANDARD,
-    NULL,
-    0,
-    NULL,
-    PURPLE_PRIORITY_DEFAULT,
-
-    PLUGIN_ID,
-    NULL,
-    PACKAGE_VERSION,
-
-    NULL,
-    NULL,
-    "ruiandrebatista@gmail.com",	/* correct author */
-    "http://outputstream.wordpress.com",
-
-
-    plugin_load,
-    NULL,
-    NULL,
-
-    NULL,
-    NULL,
-    NULL,
-    NULL,			/* this tells libpurple the address of the function to call
-				   to get the list of plugin actions. */
-    NULL,
-    NULL,
-    NULL,
-    NULL
+  PURPLE_PLUGIN_MAGIC, PURPLE_MAJOR_VERSION, PURPLE_MINOR_VERSION, PURPLE_PLUGIN_STANDARD, NULL, 0, NULL, PURPLE_PRIORITY_DEFAULT, PLUGIN_ID, NULL, PACKAGE_VERSION, NULL, NULL, "ruiandrebatista@gmail.com",	/* correct author */
+  "http://outputstream.wordpress.com", plugin_load, NULL, NULL, NULL, NULL, NULL, NULL,	/* this tells libpurple the address of the function to call
+											   to get the list of plugin actions. */
+  NULL,
+  NULL,
+  NULL,
+  NULL
 };
 
-static void init_plugin(PurplePlugin * plugin)
+static void
+init_plugin (PurplePlugin * plugin)
 {
 
-    info.name = _("Typewriter");
-    info.summary = _("Typewriter plugin");
-    info.description =
-	_("Typewriter plugin, plays sounds when buddies are typing");
+  info.name = _("Typewriter");
+  info.summary = _("Typewriter plugin");
+  info.description =
+    _("Typewriter plugin, plays sounds when buddies are typing");
 }
 
-PURPLE_INIT_PLUGIN(typewriter, init_plugin, info)
+PURPLE_INIT_PLUGIN (typewriter, init_plugin, info)
