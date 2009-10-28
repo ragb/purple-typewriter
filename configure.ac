@@ -41,6 +41,7 @@ AC_SUBST(LIBTYPEWRITER_LIBS)
 AC_OUTPUT([
 Makefile
 src/Makefile
+share/sounds/Makefile
 po/Makefile.in
 ])
 
