@@ -168,38 +168,43 @@ plugin_load (PurplePlugin * plugin)
 }
 
 
-static PurplePluginPrefFrame *get_plugin_pref_frame() {
-    PurplePluginPrefFrame *frame;
-    PurplePluginPref *pref;
-    
-    frame = purple_plugin_pref_frame_new();
-    
-    /* God won't allow me to put too many prefs here */
-    pref = purple_plugin_pref_new_with_name_and_label(SOUND_FILE_PREF_NAME,
-    _("Sound file to play while buddies are typing\n"));
-    purple_plugin_pref_set_type(pref, PURPLE_PLUGIN_PREF_STRING_FORMAT);
-    purple_plugin_pref_set_format_type(pref, PURPLE_STRING_FORMAT_TYPE_NONE);
-    purple_plugin_pref_frame_add(frame, pref);
-    
-    pref = purple_plugin_pref_new_with_name_and_label(INTERVAL_SECONDS_PREF_NAME,
-    _("Interval to loop the sound while buddies are typing"));
-        purple_plugin_pref_set_bounds(pref, 0, 11);
-    purple_plugin_pref_frame_add(frame, pref);
-    
-    return frame;
+static PurplePluginPrefFrame *
+get_plugin_pref_frame ()
+{
+  PurplePluginPrefFrame *frame;
+  PurplePluginPref *pref;
+
+  frame = purple_plugin_pref_frame_new ();
+
+  /* God won't allow me to put too many prefs here */
+  pref = purple_plugin_pref_new_with_name_and_label (SOUND_FILE_PREF_NAME,
+						     _
+						     ("Sound file to play while buddies are typing\n"));
+  purple_plugin_pref_set_type (pref, PURPLE_PLUGIN_PREF_STRING_FORMAT);
+  purple_plugin_pref_set_format_type (pref, PURPLE_STRING_FORMAT_TYPE_NONE);
+  purple_plugin_pref_frame_add (frame, pref);
+
+  pref =
+    purple_plugin_pref_new_with_name_and_label (INTERVAL_SECONDS_PREF_NAME,
+						_
+						("Interval to loop the sound while buddies are typing"));
+  purple_plugin_pref_set_bounds (pref, 0, 11);
+  purple_plugin_pref_frame_add (frame, pref);
+
+  return frame;
 }
 
 /* Preferences information */
 static PurplePluginUiInfo prefs_info = {
-	get_plugin_pref_frame,
-	0,
-	NULL,
+  get_plugin_pref_frame,
+  0,
+  NULL,
 
-	/* padding */
-	NULL,
-	NULL,
-	NULL,
-	NULL
+  /* padding */
+  NULL,
+  NULL,
+  NULL,
+  NULL
 };
 
 
@@ -227,8 +232,8 @@ static PurplePluginInfo info = {
   NULL,
   NULL,
   &prefs_info,
-  NULL,	/* this tells libpurple the address of the function to call
-											   to get the list of plugin actions. */
+  NULL,				/* this tells libpurple the address of the function to call
+				   to get the list of plugin actions. */
   NULL,
   NULL,
   NULL,
