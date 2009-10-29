@@ -62,8 +62,9 @@
 
 #define TIMEOUT_ID_KEY PLUGIN_ID "timeout-id"
 
-#define SOUND_FILE_PREF_NAME "/" PLUGIN_ID "/sound_file"
-#define INTERVAL_SECONDS_PREF_NAME "/" PLUGIN_ID "/interval_seconds"
+#define PREF_PREFIX "/plugins/" PLUGIN_NAME
+#define SOUND_FILE_PREF_NAME PREF_PREFIX "/sound_file"
+#define INTERVAL_SECONDS_PREF_NAME "/interval_seconds"
 
 static PurplePlugin *plugin_handle = NULL;
 
@@ -250,7 +251,7 @@ init_plugin (PurplePlugin * plugin)
     _("Typewriter plugin, plays sounds when buddies are typing");
 
   /* Create preferences */
-  purple_prefs_add_none ("/" PLUGIN_ID);
+  purple_prefs_add_none (PREF_PREFIX);
 
   /* Sound interval */
   purple_prefs_add_int (INTERVAL_SECONDS_PREF_NAME, 2);
