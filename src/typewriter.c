@@ -65,6 +65,7 @@
 #define PREF_PREFIX "/plugins/" PLUGIN_NAME
 #define SOUND_FILE_PREF_NAME PREF_PREFIX "/sound_file"
 #define INTERVAL_SECONDS_PREF_NAME "/interval_seconds"
+#define PLAY_SOUND_WHEN_NOT_FOCUSED_PREF_NAME PREF_PREFIX "/play_sound_when_not_focused"
 
 static PurplePlugin *plugin_handle = NULL;
 
@@ -77,8 +78,12 @@ play_typewriter_sound (void *data)
   conv = (PurpleConversation *) data;
   account = purple_conversation_get_account (conv);
 
-  purple_sound_play_file (purple_prefs_get_path (SOUND_FILE_PREF_NAME),
-			  account);
+  if (purple_prefs_get_bool (PLAY_SOUND_WHEN_NOT_FOCUSED_PREF_NAME)
+      || purple_conversation_has_focus (conv))
+    {
+      purple_sound_play_file (purple_prefs_get_path (SOUND_FILE_PREF_NAME),
+			      account);
+    }
   return TRUE;
 }
 
@@ -259,6 +264,10 @@ init_plugin (PurplePlugin * plugin)
   /* Sound file path */
   purple_prefs_add_path (SOUND_FILE_PREF_NAME,
 			 PURPLE_SOUNDSDIR "/typewriter.wav");
+
+  /* Play sound when conversation window has no focus */
+  purple_prefs_add_bool (PLAY_SOUND_WHEN_NOT_FOCUSED_PREF_NAME, TRUE);
+
 }
 
 PURPLE_INIT_PLUGIN (typewriter, init_plugin, info)
