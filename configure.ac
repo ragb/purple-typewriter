@@ -1,4 +1,4 @@
-AC_INIT(typewriter, 0.1.0, http://outputstream.wordpress.com)
+AC_INIT(typewriter, 0.1.1, http://outputstream.wordpress.com)
 AC_CONFIG_SRCDIR(src/typewriter.c)
 AM_INIT_AUTOMAKE()
 AM_MAINTAINER_MODE
