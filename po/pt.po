@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-28 20:45+0000\n"
+"POT-Creation-Date: 2009-10-30 17:16+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Rui Batista <ruiandrebatista@gmail.com>\n"
 "Language-Team: portuguese <PT@li.org>\n"
@@ -15,22 +15,28 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/typewriter.c:185
-msgid "Interval to loop the sound while buddies are typing"
-msgstr "Intervalo para repetir o som enquanto os contactos estiverem a escrever"
-
 #: ../src/typewriter.c:191
+msgid "Interval to loop the sound while buddies are typing"
+msgstr ""
+"Intervalo para repetir o som enquanto os contactos estiverem a escrever"
+
+#: ../src/typewriter.c:197
 msgid "Sound file to play while buddies are typing"
 msgstr "Ficheiro de som para tocar enquanto os contactos estiverem a escrever"
 
-#: ../src/typewriter.c:247
+#: ../src/typewriter.c:203
+msgid "Play sound when conversation window is not focused"
+msgstr "Tocar o som quando a janela de conversação não tiver o foco"
+
+#: ../src/typewriter.c:259
 msgid "Typewriter"
 msgstr "Máquina de Escrever"
 
-#: ../src/typewriter.c:248
+#: ../src/typewriter.c:260
 msgid "Typewriter plugin"
 msgstr "Plugin Máquina de Escrever"
 
-#: ../src/typewriter.c:250
+#: ../src/typewriter.c:262
 msgid "Typewriter plugin, plays sounds when buddies are typing"
-msgstr "Máquina de escrever, toca um som enquanto os contactos estão a escrever"
+msgstr ""
+"Máquina de escrever, toca um som enquanto os contactos estão a escrever"
