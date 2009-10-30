@@ -201,6 +201,7 @@ get_plugin_pref_frame ()
     purple_plugin_pref_new_with_name_and_label
     (PLAY_SOUND_WHEN_NOT_FOCUSED_PREF_NAME,
      _("Play sound when conversation window is not focused"));
+  purple_plugin_pref_frame_add (frame, pref);
 
   return frame;
 }
