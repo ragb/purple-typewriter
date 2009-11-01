@@ -1,3 +1,4 @@
+
 pidgin-typewriter (0.1.2-1ubuntu1) karmic; urgency=low
 
   * updated to karmic
@@ -9,6 +10,7 @@ pidgin-typewriter (0.1.2-1) jaunty; urgency=low
   * Corrected bugs, new option to restrict focus and portuguese translation 
 
  -- Rui Batista <ruiandrebatista@gmail.com>  Mon, 02 Nov 2009 11:14:02 +0000
+
 
 pidgin-typewriter (0.1.1-2) jaunty; urgency=low
 
