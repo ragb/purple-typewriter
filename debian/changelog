@@ -1,0 +1,11 @@
+pidgin-typewriter (0.1.1-2) jaunty; urgency=low
+
+  * Corrected bugs
+
+ -- Rui Batista <ruiandrebatista@gmail.com>  Sat, 31 Oct 2009 16:54:30 +0000
+
+pidgin-typewriter (0.1.1-1) jaunty; urgency=low
+
+  * Initial release (Closes: #nnnn)  <nnnn is the bug number of your ITP>
+
+ -- Rui Batista <ruiandrebatista@gmail.com>  Sat, 31 Oct 2009 00:25:19 +0000

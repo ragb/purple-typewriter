@@ -1,0 +1,13 @@
+Source: pidgin-typewriter
+Section: net
+Priority: extra
+Maintainer: Rui Batista <ruiandrebatista@gmail.com>
+Build-Depends: cdbs, debhelper (>= 7), autotools-dev, libpurple-dev (>= 2.5.0), pkg-config, gnome-common
+Standards-Version: 3.8.0
+Homepage: http://
+
+Package: pidgin-typewriter
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, pidgin (>= 2.5.0)
+Description: pidgin/libpurple typewriter plugin,plays sound when buddy is typing
+ this pidgin/libpurple plugin plays a typewriter sound when a buddy is typing.
