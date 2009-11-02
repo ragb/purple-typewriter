@@ -236,8 +236,8 @@ static PurplePluginInfo info = {
   PACKAGE_VERSION,
   NULL,
   NULL,
-  "ruiandrebatista@gmail.com",	/* correct author */
-  "http://outputstream.wordpress.com",
+  "Rui Batista <ruiandrebatista@gmail.com>",	/* correct author */
+  PACKAGE_BUGREPORT,
   plugin_load,
   NULL,
   NULL,
