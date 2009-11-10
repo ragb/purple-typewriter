@@ -156,6 +156,20 @@ buddy_typing_stopped_cb (PurpleAccount *
   purple_conversation_set_data (conv, TIMEOUT_ID_KEY, NULL);
 }
 
+static void
+deleting_conversation_cb (PurpleConversation * conv, void *unused)
+{
+  gint timeout_id;
+
+  timeout_id = (gint) purple_conversation_get_data (conv, TIMEOUT_ID_KEY);
+
+  if (timeout_id)
+    {				/* not null, buddy is typing */
+      g_source_remove (timeout_id);
+      purple_conversation_set_data (conv, TIMEOUT_ID_KEY, NULL);
+    }
+}
+
 static gboolean
 plugin_load (PurplePlugin * plugin)
 {
@@ -167,7 +181,9 @@ plugin_load (PurplePlugin * plugin)
   purple_signal_connect (purple_conversations_get_handle (),
 			 "buddy-typing-stopped", plugin,
 			 PURPLE_CALLBACK (buddy_typing_stopped_cb), NULL);
-
+  purple_signal_connect (purple_conversations_get_handle (),
+			 "deleting-conversation", plugin,
+			 PURPLE_CALLBACK (deleting_conversation_cb), NULL);
   /* store reference for the plugin handle */
   plugin_handle = plugin;
   return TRUE;
