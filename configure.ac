@@ -1,4 +1,4 @@
-AC_INIT(typewriter, 0.1.3, http://launchpad.net/pidgin-typewriter)
+AC_INIT(typewriter, 0.1.4, http://launchpad.net/pidgin-typewriter)
 AC_CONFIG_SRCDIR(src/typewriter.c)
 AM_INIT_AUTOMAKE()
 AM_MAINTAINER_MODE
