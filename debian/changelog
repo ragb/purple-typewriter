@@ -1,3 +1,8 @@
+pidgin-typewriter (0.1.4) karmic; urgency=low
+
+  * Corrected bugs in timeouts and amplified sound
+
+ -- Rui Batista <ruiandrebatista@gmail.com>  Mon, 23 Nov 2009 00:09:27 +0000
 
 pidgin-typewriter (0.1.2-1ubuntu1) karmic; urgency=low
 
