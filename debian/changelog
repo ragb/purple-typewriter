@@ -16,7 +16,10 @@ pidgin-typewriter (0.1.2-1) jaunty; urgency=low
 
  -- Rui Batista <ruiandrebatista@gmail.com>  Mon, 02 Nov 2009 11:14:02 +0000
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/debian
 pidgin-typewriter (0.1.1-2) jaunty; urgency=low
 
   * Corrected bugs
