@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-30 17:16+0000\n"
+"POT-Creation-Date: 2010-08-10 02:06+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,26 +16,26 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/typewriter.c:191
+#: ../src/typewriter.c:207
 msgid "Interval to loop the sound while buddies are typing"
 msgstr ""
 
-#: ../src/typewriter.c:197
+#: ../src/typewriter.c:213
 msgid "Sound file to play while buddies are typing"
 msgstr ""
 
-#: ../src/typewriter.c:203
+#: ../src/typewriter.c:219
 msgid "Play sound when conversation window is not focused"
 msgstr ""
 
-#: ../src/typewriter.c:259
+#: ../src/typewriter.c:275
 msgid "Typewriter"
 msgstr ""
 
-#: ../src/typewriter.c:260
+#: ../src/typewriter.c:276
 msgid "Typewriter plugin"
 msgstr ""
 
-#: ../src/typewriter.c:262
+#: ../src/typewriter.c:278
 msgid "Typewriter plugin, plays sounds when buddies are typing"
 msgstr ""
