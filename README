@@ -1,18 +1,53 @@
-= TYPEWRITER =
+= Pidgin Typewriter =
 
-Typewriter is a purple/pidgin plugin that plays a typewriter sound when buddies are typing. In fact it can play any sound, however the typewriter sound stolen from the JAWS scripts for MSN/WLM gave it the name.
+Pidgin Typewriter is a pidgin plugin that plays a typewriter sound when buddies are typing. In fact it can play any sound, however the typewriter sound stolen from the JAWS scripts for MSN/WLM gave it the name. This plugin may work with other libpurple clients but main support is for pidgin.
 
-== INSTALATION ==
+== Where can I get It ==
+
+Tarball releases are posted to the project page on launchpad:
+
+https://launchpad.net/pidgin-typewriter
+
+On this page are also posted announcements and all information related with this project.
+
+Code is managed using the Git version control system, you can clone the repository hosted at github using:
+
+git clone git://github.com/ragb/purple-typewriter.git
+
+== Installation ==
 
 To install the plugin on the pidgin system directories, do the usual autotools procedure is needed.
 
+From a tarball release:
 
 ./configure --prefix=/usr && make && sudo make install
 
 Note that this commands installs pidgin in the standard /usr prefix, if you have compiled pidgin/purple from source it can be in other prefix like /usr/local, just change the --prefix switch.
 
+If you are compiling from Git, please run
+
+./autogen.sh --prefix=/usr
+
+(or any other --prefix) to bootstrap autotools and run the configure script.
+
 == ACTIVATION ==
 
-Just go to the plugins dialog (Preferences > Plugins) and check the typewriter plugin.
+Just go to the Pidgin plugins dialog (Preferences > Plugins) and check the typewriter plugin.
 
+== Customization ==
+
+This plugin have some options you can change for your own needs. Go to pidgin plugin window (preferences -> Plugins), select the Typewriter and click configure. There you can change the plugin options.
+
+
+== Reporting bugs ==
+
+Report bugs and submit patches using the launchpad bug tracking system at:
+
+https://bugs.launchpad.net/pidgin-typewriter
+
+== Localization ==
+
+Translations for this project are also managed using launchpad. If you want to help please check
+
+https://translations.launchpad.net/pidgin-typewriter
 
