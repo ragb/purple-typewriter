@@ -4,15 +4,23 @@ Pidgin Typewriter is a pidgin plugin that plays a typewriter sound when buddies 
 
 == Where can I get It ==
 
-Tarball releases are posted to the project page on launchpad:
+Project official page is on launchpad at:
 
 https://launchpad.net/pidgin-typewriter
 
-On this page are also posted announcements and all information related with this project.
+
+Tarball releases are posted to the project downloads page:
+
+https://code.launchpad.net/pidgin-typewriter/+download
 
 Code is managed using the Git version control system, you can clone the repository hosted at github using:
 
 git clone git://github.com/ragb/purple-typewriter.git
+
+A bazaar mirror branch is keept on launchpad, to check it use:
+
+bzr branch lp:pidgin-typewriter
+
 
 == Installation ==
 
@@ -34,6 +42,7 @@ If you are compiling from Git, please run
 
 Just go to the Pidgin plugins dialog (Preferences > Plugins) and check the typewriter plugin.
 
+
 == Customization ==
 
 This plugin have some options you can change for your own needs. Go to pidgin plugin window (preferences -> Plugins), select the Typewriter and click configure. There you can change the plugin options.
@@ -50,4 +59,5 @@ https://bugs.launchpad.net/pidgin-typewriter
 Translations for this project are also managed using launchpad. If you want to help please check
 
 https://translations.launchpad.net/pidgin-typewriter
+
 
